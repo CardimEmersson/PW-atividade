@@ -1,22 +1,55 @@
-<?php
-include('conexao.php');
+<!DOCTYPE html>
+<html lang="pt-br">
 
-if (empty($_POST['usuario']) || (empty($_POST['senha'])) {
-  header('Location: index.php');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN-USUARIO</title>
 
-  exit()
-  // code...
-}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-$usuario = mysqli_real_escape_string($conexao, $_post['usuario']);
-$senha = mysqli_real_escape_string($conexao, $_post['senha']);
+</head>
 
-$query = "select usuario from usuario where usuario = '$usuario' and senha = md5('$senha')";
-$result = mysqli_query($conexao, $query);
+<body style="background: #f5f5f5;">
 
-$row = mysqli_num_rows($result);
+    <div class="container mt-5 d-flex">
+
+            <div class="card w-50 mx-auto">
+                <div class="card-body">
+                    <h1 class="text-center">Login</h1>
+        
+                    <form action="" method="POST" class=" px-5 mx-auto my-4">
+                
+                        <div class="form-group">
+                            <label for="usuario">Email</label>
+                            <input class="form-control" type="text" name="email" placeholder="Usuário" id="email">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input class="form-control" type="password" name="senha" placeholder="Senha" id="senha">
+                        </div>
+                
+                        <button type="submit" class="btn btn-block btn-primary">Logar</button>
+                
+                    </form>
+                    <a href="cadastro.html" class="d-block text-center mt-2">Ainda não possui cadastro? <strong>Cadastre-se!</strong></a>
+
+                </div>
+            </div>
+    </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
 
-
- ?>
+</html>
