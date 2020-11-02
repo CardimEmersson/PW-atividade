@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,28 +16,40 @@
 
 <body style="background: #f5f5f5;">
 
-    <div class="container mt-5 d-flex">
+    <div class="container mt-5 d-flex flex-column">
+            <?php if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) {?>
+                    <div class="col-12 text-right">
+                        <h6><?php echo $_SESSION['Nome'] ?></h6>
+                        <a href="src/sair.php" class="btn btn-lg btn-danger mb-2">Sair</a>
+                    </div>
+            <?php } ?>
 
+
+            <?php if(isset($_GET['msg'])){ ?>
+                <div class="col-12 text-center alert alert-info" role="alert">
+                    <?php echo $_GET['msg']; ?>
+                </div> 
+            <?php } ?>
             <div class="card w-50 mx-auto">
                 <div class="card-body">
                     <h1 class="text-center">Login</h1>
         
-                    <form action="" method="POST" class=" px-5 mx-auto my-4">
+                    <form action="src/logar.php" method="POST" class=" px-5 mx-auto my-4">
                 
                         <div class="form-group">
                             <label for="usuario">Email</label>
-                            <input class="form-control" type="text" name="email" placeholder="Usuário" id="email">
+                            <input class="form-control" type="text" name="email" placeholder="Usuário" id="email" required>
                         </div>
                 
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input class="form-control" type="password" name="senha" placeholder="Senha" id="senha">
+                            <input class="form-control" type="password" name="senha" placeholder="Senha" id="senha" required>
                         </div>
                 
                         <button type="submit" class="btn btn-block btn-primary">Logar</button>
                 
                     </form>
-                    <a href="cadastro.html" class="d-block text-center mt-2">Ainda não possui cadastro? <strong>Cadastre-se!</strong></a>
+                    <a href="cadastro.php" class="d-block text-center mt-2">Ainda não possui cadastro? <strong>Cadastre-se!</strong></a>
 
                 </div>
             </div>

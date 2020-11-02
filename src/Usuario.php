@@ -25,39 +25,38 @@ class Usuario
             try {
                 $sql = $this->pdo->prepare($query);
                 $sql->execute();
-                $_REQUEST['mensagem'] = "Cadastrado com sucesso!";
-                require_once '../login.php';
+                $mensagem = "Cadastrado com sucesso!";
+                header("Location: http://localhost/pw-atividade/login.php?msg=$mensagem");
             } catch (PDOException $e) {
                 die($e->getMessage());
             }
         }
     }
 
-    private function verificarEmail($email) {
-        //verificar se já existe e-mail cadastrado
+    private function verificarEmail($email) 
+    {
         $query = "SELECT Id FROM usuario WHERE Email = '$email'";
 
         try {
             $sql = $this->pdo->prepare($query);
             $sql->execute();
-            // $dados = $sql->fetch(PDO::FETCH_OBJ);
-            // echo $dados;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
 
-        if($sql->rowCount() > 0) {
-            $_REQUEST['mensagem'] = "Este email já está cadastrado";
-            require_once '../cadastro.php';
+        if ($sql->rowCount() > 0) {
+            $mensagem = "Este email já está cadastrado";
+            header("Location: http://localhost/pw-atividade/cadastro.php?msg=$mensagem");
             return false;
         } 
 
         return true;
     }
 
-    public function logar($email, $senha) {
+    public function logar($email, $senha) 
+    {
         
-        $query = "SELECT Id FROM usuario WHERE Email = '$email' AND Senha = '$senha'";
+        $query = "SELECT Id, Nome FROM usuario WHERE Email = '$email' AND Senha = '$senha'";
         try {
             $sql = $this->pdo->prepare($query);
     	    $sql->execute();
@@ -65,14 +64,19 @@ class Usuario
             die($e->getMessage());
         }
     
-    	if($sql->rowCount() > 0){
+    	if ($sql->rowCount() > 0) {
     		$dado = $sql->fetch();
-    		session_start();			//criação de sessão de login
-    		$_SESSION['Id'] = $dado['Id'];
-    		return true;
+            session_start();			//criação de sessão de login
+            
+            if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) {
+                unset($_SESSION['Id']);
+                unset($_SESSION['Nome']);
+            }
 
-    	}else{
-    		return false;
-    	}
+            $_SESSION['Id'] = $dado['Id'];
+            $_SESSION['Nome'] = $dado['Nome'];
+    		return true;
+        }
+        return false;
     }
 }

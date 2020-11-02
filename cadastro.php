@@ -1,9 +1,6 @@
 <?php
-    if(isset($_REQUEST['mensagem'])){
-        $mensagem = $_REQUEST['mensagem'];
-    }
+    session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,13 +16,21 @@
 <body style="background: #f5f5f5;">
     
     <div class="container mt-5 d-flex flex-column">
+
+             <?php if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) {?>
+                    <div class="col-12 text-right">
+                        <h6><?php echo $_SESSION['Nome'] ?></h6>
+                        <a href="src/sair.php" class="btn btn-lg btn-danger mb-2">Sair</a>
+                    </div>
+            <?php } ?>
+
         <div class="col-12 text-right">
-            <a href="login.html" class="btn btn-lg btn-primary">Voltar</a>
+            <a href="login.php" class="btn btn-lg btn-primary">Voltar</a>
         </div>
         
-        <?php if(isset($_REQUEST['mensagem'])){ ?>
+        <?php if(isset($_GET['msg'])){ ?>
             <div class="col-12 text-center alert alert-info" role="alert">
-                <?php echo $_REQUEST['mensagem']; ?>
+                <?php echo $_GET['msg']; ?>
             </div> 
         <?php } ?>
         
@@ -33,7 +38,7 @@
             <div class="card-body">
                 <h1 class="text-center">Cadastro</h1>
 
-                <form action="classes/cadastrar.php" method="POST" class="px-2 mx-auto my-4">
+                <form action="src/cadastrar.php" method="POST" class="px-2 mx-auto my-4">
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
@@ -51,7 +56,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-5">
                             <div class="form-group">
 
                                 <label for="sexo">Sexo:</label>
@@ -64,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-8">
+                        <div class="col-12 col-lg-7">
                             <div class="form-group">
                                 <label for="nascimento">Data de nascimento</label>
                                 <input class="form-control" type="date" name="nascimento" id="nascimento" value=""
@@ -90,13 +95,13 @@
                     <div class="form-group">
                         <label for="senha">Senha:</label>
                         <input class="form-control" type="password" name="senha" id="senha"
-                            placeholder="Digite uma senha" minlength="8">
+                            placeholder="Digite uma senha" minlength="8" required>
                     </div>
 
                     <div class="form-group">
                         <label for="confsenha">Confirmar senha:</label>
                         <input class="form-control" type="password" name="confsenha" id="confsenha"
-                            placeholder="Confirme sua senha" minlength="8">
+                            placeholder="Confirme sua senha" minlength="8" required>
 
                     </div>
 

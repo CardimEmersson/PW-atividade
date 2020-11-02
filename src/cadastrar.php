@@ -4,7 +4,7 @@ require_once 'Usuario.php';
 
 $usuario = new Usuario;
 
-if(isset($_POST['nome'])){
+if (isset($_POST['nome'])) {
 	$nome = addslashes($_POST['nome']);
 	$sobrenome = addslashes($_POST['sobrenome']);
 	$sexo = addslashes($_POST['sexo']);
@@ -17,7 +17,7 @@ if(isset($_POST['nome'])){
     $usuario->cadastrar($nome, $sobrenome, $sexo, $nascimento, $email, $celular, $senha);
     
 } else {
-	$_REQUEST['mensagem'] = "Houve um problema ao enviar o formulario";
-	require_once '../cadastro.php';
+	$mensagem = "Houve um problema ao enviar o formulario";
+	header("location: http://localhost/pw-atividade/cadastro.php?msg=$mensagem");
 }
 
