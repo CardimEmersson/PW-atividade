@@ -1,6 +1,7 @@
 <h1 align="center">
     Atividade Programação Web - Classroom
 </h1>
+<h2 align="center">Feito por: Kaique Nascimento e Emersson Cardim</h2
 <p align="center">Um sistema de login e cadastro de usuarios</p>
 
 <h4> Status do projeto: Em construção...</h4>
@@ -8,7 +9,7 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [tecnologias](#tecnologias)
+   * [Tecnologias](#tecnologias)
    * [Pré Requisitos](#pré-requisitos)
    * [Como usar](#como-usar)
    * [Versões](#versões)
@@ -38,7 +39,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 $ cd /xampp/htdocs
 
 # Execute o comando abaixo para clonar o projeto.
-$ git clone https://github.com/CardimEmersson/https://github.com/CardimEmersson/PW-atividade.git
+$ git clone https://github.com/CardimEmersson/PW-atividade.git
 
 # Execute o programa Xampp e ative o apache e mysql
 
