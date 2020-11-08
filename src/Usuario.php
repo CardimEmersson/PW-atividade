@@ -16,7 +16,6 @@ class Usuario
         }
     }
 
-
     public function cadastrar($nome, $sobrenome, $sexo, $nascimento, $email, $celular, $senha)
     {
         if ($this->verificarEmail($email)) {

@@ -10,8 +10,7 @@ if (isset($_POST['email'])) {
 
     if ($usuario->logar($email, $senha)) {
 
-        $mensagem = "Usuario logado!";
-        header("location: http://localhost/pw-atividade/login.php?msg=$mensagem");
+        header("location: http://localhost/pw-atividade/sistema.php");
     } else {
         $mensagem = "Email e/ou senha estão incorretos!";
         header("location: http://localhost/pw-atividade/login.php?msg=$mensagem");
