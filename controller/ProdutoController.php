@@ -1,19 +1,10 @@
 <?php
 
-/**
- * <b>Produto Controller:</b>
- * Essa é uma classe que tem como objetivo realizar controle do produto na aplicação.
- * @author Emersson cardim
- * @copyright (c) 2020, Emersson C. Mota
- * @access public
- * 
- */
 include_once 'model/Produto.php';
 include_once 'utils/ValidarImagem.php';
 
 class ProdutoController
 {
-    /**@var object Instância da classe produto */
     public $produto;
 
     public function __construct()
@@ -22,10 +13,6 @@ class ProdutoController
         $_REQUEST['mensagem'] = $this->produto->getMensagem();
     }
 
-    /**
-     * <b>Exibir produtos:</b>
-     * Realizará a chamada para página de exibição dos produtos
-     */
     public function exibirProdutos()
     {
 
@@ -44,10 +31,6 @@ class ProdutoController
         require_once 'view/produtoView.php';
     }
 
-    /**
-     * <b>Criar produto:</b>
-     * Realizará a chamada para página de cadastro dos produtos
-     */
     public function criarProduto()
     {
         $this->listarCategorias();
@@ -55,10 +38,6 @@ class ProdutoController
         include_once 'View/cadastrarProduto.php';
     }
 
-    /**
-     * <b>Alterar produto:</b>
-     * Realizará a chamada para a página de alteração de um determinado produto
-     */
     public function alterarProduto()
     {
         $this->listarCategorias();
@@ -76,10 +55,6 @@ class ProdutoController
         include_once 'View/alterarProduto.php';
     }
 
-    /**
-     * <b>Cadastrar produto:</b>
-     * Realizará a chamada para cadastro dos dados do produto enviada via formulario
-     */
     public function cadastrarProduto()
     {
 
@@ -111,16 +86,12 @@ class ProdutoController
                 );
             }
 
-            $this->criarProduto();
+            $this->exibirProdutos();
         } else {
             $this->criarProduto();
         }
     }
 
-    /**
-     * <b>Deletar produto:</b>
-     * Realizará a chamada para exclusão de um registro de produto
-     */
     public function deletarProduto()
     {
         if (isset($_REQUEST['Id'])) {
@@ -143,10 +114,6 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Atualizar produto:</b>
-     * Realizará a chamada para alteração de um registro de produto
-     */
     public function atualizarProduto()
     {
         if (isset($_POST['Id'])) {
@@ -173,12 +140,11 @@ class ProdutoController
                         $this->produto->alterar('produto', "url_imagem = ''", 'Id_produto', $chave);
 
                         $imagem = $novoProduto->getImagem();
-                    } else {
 
+                        $set = "Nome_produto = '$nome', url_imagem = '$imagem', Preco_produto = '$preco', Descricao_produto = '$descricao', Quantidade_produto = '$quantidade'";
+                    } else {
                         $this->exibirProdutos();
                     }
-
-                    $set =  $set = "Nome_produto = '$nome', url_imagem = '$imagem', Preco_produto = '$preco', Descricao_produto = '$descricao', Quantidade_produto = '$quantidade'";
                 }
 
                 $this->produto->alterar(
@@ -215,13 +181,10 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Listar categorias:</b>
-     * Realizará a chamada para listagem de todas as categorias cadastradas
-     */
     private function listarCategorias()
     {
         $listaCategorias = $this->produto->listarTudo('categoria');
+
         if (!empty($listaCategorias)) {
             $_REQUEST['listaCategorias'] = $listaCategorias;
         } else {
@@ -230,20 +193,11 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Verificar campos:</b>
-     * Realizará a validação das informações enviadas via formulario
-     * @return Produto $novoProduto = objeto com os dados validados
-     * @return null 
-     */
     private function verificarCampos()
     {
         if (isset($_POST['nome'])) {
 
             $novoProduto = new Produto();
-
-            // var_dump($_FILES['arquivo']['name']);
-            // die();
 
             if (!empty($_FILES['arquivo']['name'])) {
                 $nomeImagem = $this->verificarImagem($_FILES['arquivo']);
@@ -269,13 +223,6 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Verificar imagem:</b>
-     * Realizará a chamada para a validação do arquivo enviado via formulario
-     * @param array $arquivo = um array de items de um arquivo enviado via método POST HTTP
-     * @return string $nomeImagem = nome da imagem armazenada no servidor
-     * @return null 
-     */
     private function verificarImagem($arquivo)
     {
         $imagem = $arquivo;
@@ -301,12 +248,6 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Deletar imagem:</b>
-     * Realizará a chamada para a exclusão de uma imagem armazenada no servidor
-     * @param int $codigo = Número do codigo do produto
-     * @return boolean 
-     */
     private function deletarImagem($codigo)
     {
         $imagem = $this->produto->listar('url_imagem', 'produto', 'Id_produto', $codigo);
@@ -321,12 +262,6 @@ class ProdutoController
         }
     }
 
-    /**
-     * <b>Valida preço:</b>
-     * Realizará a validação do campo preço enviado via formulario
-     * @param array $valor = Um campo enviado via método POST HTTP
-     * @return float $valor = Preço validado
-     */
     private function validaPreco($valor)
     {
         $verificaPonto = ".";
@@ -344,37 +279,37 @@ class ProdutoController
         if (isset($_POST['pesq_nome'])) {
             $nome = $_POST['pesq_nome'];
             $preco = $_POST['pesq_preco'];
-            $quantidade = $_POST['pesq_quantidade']; 
-            
+            $quantidade = $_POST['pesq_quantidade'];
+
             ////////
-            if(!empty($nome) && empty($preco) && empty($quantidade)) {
+            if (!empty($nome) && empty($preco) && empty($quantidade)) {
                 $sql = "Nome_produto = '$nome'";
             }
-            if(!empty($nome) && !empty($preco) && empty($quantidade)) {
+            if (!empty($nome) && !empty($preco) && empty($quantidade)) {
                 $sql = "Nome_produto = '$nome' AND Preco_produto = '$preco'";
-            } 
-            if(!empty($nome) && !empty($preco) && !empty($quantidade)) {
+            }
+            if (!empty($nome) && !empty($preco) && !empty($quantidade)) {
                 $sql = "Nome_produto = '$nome' AND Preco_produto = '$preco' AND Quantidade_produto = '$quantidade'";
             }
 
-            if(empty($nome) && !empty($preco) && !empty($quantidade)) {
+            if (empty($nome) && !empty($preco) && !empty($quantidade)) {
                 $sql = "Preco_produto = '$preco' AND Quantidade_produto = '$quantidade'";
             }
-            if(empty($nome) && empty($preco) && !empty($quantidade)) {
+            if (empty($nome) && empty($preco) && !empty($quantidade)) {
                 $sql = "Quantidade_produto = '$quantidade'";
             }
-            if(!empty($nome) && empty($preco) && !empty($quantidade)) {
+            if (!empty($nome) && empty($preco) && !empty($quantidade)) {
                 $sql = "Nome_produto = '$nome' AND Quantidade_produto = '$quantidade'";
             }
-            if(empty($nome) && !empty($preco) && empty($quantidade)) {
+            if (empty($nome) && !empty($preco) && empty($quantidade)) {
                 $sql = "preco_produto = '$preco'";
             }
-            if(empty($nome) && empty($preco) && empty($quantidade)){
+            if (empty($nome) && empty($preco) && empty($quantidade)) {
                 $this->exibirProdutos();
             }
             ////////
-            
-            if(!empty($sql)) {
+
+            if (!empty($sql)) {
                 $dados_prod = $this->produto->pesquisarProdutos($sql);
                 $dados_cat = $this->produto->listarCategorias();
             } else {
@@ -392,7 +327,6 @@ class ProdutoController
             }
 
             require_once 'view/produtoView.php';
-
         } else {
             $_REQUEST['mensagem'] = "Houve um problema ao tentar pesquisar o produto";
             $this->exibirProdutos();

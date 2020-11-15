@@ -20,18 +20,19 @@ $mensagem = $_REQUEST['mensagem'];
 
     <form action="?link=produtos&metodo=filtroProduto" method="post" class="w-100 d-flex px-3 my-3">
         <div class="input-group px-2">
-            <input type="text" class="form-control" placeholder="Nome" name="pesq_nome">
+            <input type="text" class="form-control" placeholder="Nome" name="pesq_nome" value="<?php echo isset($_POST['pesq_nome']) ? $_POST['pesq_nome'] : ''; ?>">
         </div>
 
         <div class="input-group px-2">
-            <input type="text" class="dinheiro form-control" placeholder="Preço" id="preco" name="pesq_preco" maxlength="10">
+            <input type="text" class="dinheiro form-control" placeholder="Preço" id="preco" name="pesq_preco" maxlength="10" value="<?php echo isset($_POST['pesq_preco']) ? $_POST['pesq_preco'] : ''; ?>">
             <div class="input-group-append">
                 <span class="input-group-text">R$</span>
             </div>
         </div>
 
         <div class="input-group px-2">
-            <input type="number" class="form-control" placeholder="Quantidade" name="pesq_quantidade">
+            <input type="number" class="form-control" placeholder="Quantidade" name="pesq_quantidade" 
+            value="<?php echo isset($_POST['pesq_quantidade']) ? $_POST['pesq_quantidade'] : ''; ?>">
         </div>
 
         <button type="submit" class="btn btn-outline-primary" type="button">Buscar</button>

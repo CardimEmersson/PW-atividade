@@ -1,8 +1,10 @@
 <?php
-    session_start();
+session_start();
 
-    include_once 'controller/Controller.php';
-    $controller = new Controller();
+include_once 'controller/Controller.php';
+$controller = new Controller();
+
+$mensagem = $_REQUEST['mensagem'];
 
 ?>
 <!DOCTYPE html>
@@ -21,20 +23,13 @@
 
     <div class="container mt-5 d-flex flex-column">
 
-        <?php if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) { ?>
-            <div class="col-12 text-right">
-                <h6><?php echo $_SESSION['Nome'] ?></h6>
-                <a href="src/sair.php" class="btn btn-lg btn-danger mb-2">Sair</a>
-            </div>
-        <?php } ?>
-
         <div class="col-12 text-right">
             <a href="login.php" class="btn btn-lg btn-primary">Voltar</a>
         </div>
 
-        <?php if (isset($_GET['mensagem'])) { ?>
-            <div class="w-50 mx-auto text-center alert alert-info" role="alert">
-                <?php echo $_GET['mensagem']; ?>
+        <?php if (!empty($mensagem)) { ?>
+            <div class="alert alert-info" role="alert">
+                <?php echo $mensagem; ?>
             </div>
         <?php } ?>
 
@@ -48,7 +43,9 @@
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label for="nome">*Nome:</label>
-                                <input class="form-control" type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+                                <input class="form-control" type="text" name="nome" id="nome" placeholder="Digite seu nome" required
+                                value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>">
+
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
@@ -114,15 +111,15 @@
     </div>
 
     <?php
-        if (isset($_REQUEST["link"])) {
+    if (isset($_REQUEST["link"])) {
 
-            $link = $_REQUEST["link"];
-            switch ($link) {
-                case 'usuario':
-                    $controller->usuario();
-                    break;
-            }
+        $link = $_REQUEST["link"];
+        switch ($link) {
+            case 'usuario':
+                $controller->usuario();
+                break;
         }
+    }
     ?>
 
 

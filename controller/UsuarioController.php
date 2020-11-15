@@ -1,18 +1,9 @@
 <?php
 
-/**
- * <b>Usuario Controller:</b>
- * Essa é uma classe que tem como objetivo realizar controle de usuario na aplicação.
- * @author Emersson cardim
- * @copyright (c) 2020, Emersson C. Mota
- * @access public
- * 
- */
 include_once 'model/Usuario.php';
 
 class UsuarioController
 {
-    /**@var object Instância da classe usuario */
     public $usuario;
 
     public function __construct()
@@ -21,10 +12,6 @@ class UsuarioController
         $_REQUEST['mensagem'] = $this->usuario->getMensagem();
     }
 
-    /**
-     * <b>Exibir perfil:</b>
-     * Realizará a chamada para página de exibição do perfil do usuario
-     */
     public function exibirPerfil()
     {
         $id = $_SESSION['Id'];
@@ -41,20 +28,12 @@ class UsuarioController
         require_once 'view/usuarioView.php';
     }
 
-    /**
-     * <b>Criar produto:</b>
-     * Realizará a chamada para página de cadastro dos produtos
-     */
     public function criarUsuario()
     {
         header("location: http://localhost/pw-atividade/cadastro.php");
         exit;
     }
 
-    /**
-     * <b>Alterar produto:</b>
-     * Realizará a chamada para a página de alteração de um determinado produto
-     */
     public function alterarUsuario()
     {
 
@@ -91,17 +70,13 @@ class UsuarioController
             $mensagem = $this->usuario->getMensagem();
 
             echo "<script type='text/javascript'> window.location='http://localhost/pw-atividade/login.php?mensagem=$mensagem';</script>";
-        
         } else {
             $mensagem = $_REQUEST['mensagem'];
+
             echo "<script type='text/javascript'> window.location='http://localhost/pw-atividade/cadastro.php?mensagem=$mensagem';</script>";
         }
     }
 
-    /**
-     * <b>Deletar produto:</b>
-     * Realizará a chamada para exclusão de um registro de produto
-     */
     public function deletarUsuario()
     {
         if (isset($_REQUEST['Id'])) {
@@ -118,15 +93,13 @@ class UsuarioController
         }
     }
 
-    /**
-     * <b>Atualizar produto:</b>
-     * Realizará a chamada para alteração de um registro de produto
-     */
     public function atualizarUsuario()
     {
         if (isset($_POST['Id'])) {
+
             $chave = $_POST['Id'];
             $novoUsuario = $this->verificarCampos();
+
             if ($novoUsuario != null) {
                 $nome = $novoUsuario->getNome();
                 $sobrenome = $novoUsuario->getSobrenome();
@@ -158,14 +131,7 @@ class UsuarioController
     {
         $dado = $this->usuario->listar('Id_usuario', 'usuario', 'Email_usuario', "'$email'");
 
-        $id = $dado->Id_usuario;
-
         if (!empty($dado)) {
-            if(isset($_POST['Id'])) {
-                if($id == $_POST['Id']) {
-                    return false;
-                }
-            }
             return true;
         }
 
@@ -175,32 +141,25 @@ class UsuarioController
     public function loginUsuario()
     {
         if (isset($_POST['email'])) {
+
             $email = addslashes($_POST['email']);
             $senha = md5(addslashes($_POST['senha']));
 
             if ($this->usuario->validarLogin($email, $senha)) {
 
-                // header("location: http://localhost/pw-atividade/sistema.php");
                 echo "<script type='text/javascript'> window.location='http://localhost/pw-atividade/sistema.php';</script>";
             } else {
-                // $_REQUEST['mensagem'] = "Email e/ou senha estão incorretos!";
+
                 $mensagem = "Email e/ou senha estão incorretos!";
+
                 echo "<script type='text/javascript'> window.location='http://localhost/pw-atividade/login.php?mensagem=$mensagem';</script>";
             }
         } else {
-            // $_REQUEST['mensagem'] = "Houve um erro ao tentar fazer login";
             $mensagem = "Houve um erro ao tentar fazer login";
             echo "<script type='text/javascript'> window.location='http://localhost/pw-atividade/login.php?mensagem=$mensagem';</script>";
-            // header("location: http://localhost/pw-atividade/login.php?msg=$mensagem");
         }
     }
 
-    /**
-     * <b>Verificar campos:</b>
-     * Realizará a validação das informações enviadas via formulario
-     * @return Usuario $novoProduto = objeto com os dados validados
-     * @return null 
-     */
     private function verificarCampos()
     {
         if (isset($_POST['nome'])) {
@@ -221,7 +180,6 @@ class UsuarioController
             }
 
             return $novoUsuario;
-            
         } else {
             $_REQUEST['mensagem'] = "Houve um problema";
             return null;

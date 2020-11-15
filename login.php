@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    
-    include_once 'controller/Controller.php';
-    $controller = new Controller();
+session_start();
+
+include_once 'controller/Controller.php';
+$controller = new Controller();
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,6 @@
             </div>
         <?php } ?>
 
-
         <div class="card w-50 mx-auto">
             <div class="card-body">
                 <h1 class="text-center">Login</h1>
@@ -61,15 +60,15 @@
     </div>
 
     <?php
-        if (isset($_REQUEST["link"])) {
+    if (isset($_REQUEST["link"])) {
 
-            $link = $_REQUEST["link"];
-            switch ($link) {
-                case 'usuario':
-                    $controller->usuario();
-                    break;
-            }
+        $link = $_REQUEST["link"];
+        switch ($link) {
+            case 'usuario':
+                $controller->usuario();
+                break;
         }
+    }
     ?>
 
 
