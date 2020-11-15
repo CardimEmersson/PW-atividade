@@ -1,13 +1,27 @@
 <?php
 
+	/**
+	 * <b>Conexao:</b>
+	 * Essa é uma classe que tem como objetivo realizar a conexão com o banco de dados.
+	 * @author Emersson cardim
+	 * @copyright (c) 2020, Emersson C. Mota
+	 * @access public
+	 * 
+	 */
 	class Conexao
 	{
+		/**@var object Instância da classe PDO */
 		public static $pdo;
 		
 		private function __construct()
 		{
 
 		}
+		/**
+		 * <b>Buscar conexão</b>
+		 * irá tentar realizar a conexão com o banco de dados.
+		 * @return object Instância da classe PDO
+		 */
 		
 		public static function getConexao()
 		{	
