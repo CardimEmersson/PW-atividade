@@ -6,9 +6,9 @@ $mensagem = $_REQUEST['mensagem'];
 <div class="d-flex align-items-center flex-column">
 
     <div class="w-100 my-3 px-5 border-dark border-bottom d-flex justify-content-between align-items-center">
-      <h3 class="">Cadastrar produto</h3>
-      <a href="?link=produtos&metodo=exibirProdutos" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
-  </div>
+        <h3 class="">Cadastrar produto</h3>
+        <a href="?link=produtos&metodo=exibirProdutos" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
+    </div>
 
 
     <?php if (!empty($mensagem)) { ?>
@@ -46,9 +46,7 @@ $mensagem = $_REQUEST['mensagem'];
                 <label for="categoria">Categoria</label>
                 <select id="categoria" class="form-control mul-select" name="categoria[]" multiple="multiple" required>
                     <?php foreach ($listaCategorias as $categoria) { ?>
-                        <option value="<?php echo $categoria->Id_categoria; ?>"
-                        <?php echo isset($_POST['categoria']) == $categoria->Id_categoria ? 'selected' : '' ?>
-                        >
+                        <option value="<?php echo $categoria->Id_categoria; ?>" <?php echo isset($_POST['categoria']) == $categoria->Id_categoria ? 'selected' : '' ?>>
 
                             <?php echo $categoria->Nome_categoria; ?>
                         </option>

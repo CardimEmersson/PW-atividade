@@ -32,7 +32,7 @@ $mensagem = $_REQUEST['mensagem'];
                             <a
                                 data-nome="<?php echo $categoria->Nome_categoria; ?>"
                                 data-id="<?php echo $categoria->Id_categoria; ?>"
-                                class="delete w-100 btn btn-danger my-1"
+                                class="delete w-50 btn btn-danger my-1"
                             >
                               <i class="far fa-trash-alt"></i> Apagar
                             </a>
