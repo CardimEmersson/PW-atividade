@@ -6,7 +6,7 @@
 
     <div class="w-100 my-3 px-5 border-dark border-bottom d-flex justify-content-between align-items-center">
         <h3 class="">Alterar usuario</h3>
-        <a href="?link=usuario&metodo=exibirPerfil" class="my-2 px-3 btn btn-primary btn-lg">Voltar</a>
+        <a href="?link=usuario&metodo=exibirPerfil" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
     </div>
 
     <?php if (!empty($mensagem)) { ?>

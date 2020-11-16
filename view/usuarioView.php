@@ -7,7 +7,7 @@ $mensagem = $_REQUEST['mensagem'];
 
     <div class="w-100 my-3 px-5 border-dark border-bottom d-flex justify-content-between align-items-center">
         <h3 class=""><?php echo $usuario->Nome_usuario; ?> <?php echo $usuario->Sobrenome_usuario; ?></h3>
-        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg">Voltar</a>
+        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
     </div>
 
     <?php if (!empty($mensagem)) { ?>
@@ -68,13 +68,13 @@ $mensagem = $_REQUEST['mensagem'];
 
     <div class="row w-100 mt-5">
         <div class="col-4 ml-auto">
-            <a href="?link=usuario&metodo=alterarUsuario&Id=<?php echo $usuario->Id_usuario; ?>" class="btn btn-primary btn-block">Editar perfil</a>
+            <a href="?link=usuario&metodo=alterarUsuario&Id=<?php echo $usuario->Id_usuario; ?>" class="btn btn-primary btn-block"><i class="fas fa-user-edit"></i> Editar perfil</a>
         </div>
         <div class="col-4 mr-auto">
-            <a 
+            <a
                 data-nome="<?php echo $usuario->Nome_usuario; ?>"
                 data-id="<?php echo $usuario->Id_usuario; ?>"
-                href="#" class="delete btn btn-danger btn-block">Excluir conta</a>
+                href="#" class="delete btn btn-danger btn-block"><i class="far fa-trash-alt"></i> Excluir conta</a>
         </div>
     </div>
 </div>
@@ -94,7 +94,7 @@ $mensagem = $_REQUEST['mensagem'];
                 Tem certeza que deseja excluir?
             </div>
             <div class="modal-footer">
-                <a href="#" class="delete-button btn btn-block btn-danger">Excluir</a>
+                <a href="#" class="delete-button btn btn-block btn-danger"><i class="far fa-trash-alt"></i> Excluir</a>
             </div>
         </div>
     </div>

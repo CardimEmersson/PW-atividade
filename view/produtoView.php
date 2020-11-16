@@ -8,7 +8,7 @@ $mensagem = $_REQUEST['mensagem'];
 
     <div class="w-100 my-3 px-5 border-dark border-bottom d-flex justify-content-between align-items-center">
         <h3 class="">Lista de Produtos</h3>
-        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg">Voltar</a>
+        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
     </div>
 
     <?php if (!empty($mensagem)) { ?>
@@ -31,11 +31,11 @@ $mensagem = $_REQUEST['mensagem'];
         </div>
 
         <div class="input-group px-2">
-            <input type="number" class="form-control" placeholder="Quantidade" name="pesq_quantidade" 
+            <input type="number" class="form-control" placeholder="Quantidade" name="pesq_quantidade"
             value="<?php echo isset($_POST['pesq_quantidade']) ? $_POST['pesq_quantidade'] : ''; ?>">
         </div>
 
-        <button type="submit" class="btn btn-outline-primary" type="button">Buscar</button>
+        <button type="submit" class="btn btn-outline-primary" type="button"><i class="fas fa-search"></i></button>
 
     </form>
 
@@ -82,10 +82,10 @@ $mensagem = $_REQUEST['mensagem'];
                         </td>
                         <td class="align-middle">
                             <a data-nome="<?php echo $produto->Nome_produto; ?>" data-id="<?php echo $produto->Id_produto; ?>" class="delete w-100 btn btn-danger my-1">
-                                Apagar
+                                <i class="far fa-trash-alt"></i> Apagar
                             </a>
 
-                            <a href="?link=produtos&metodo=alterarProduto&Id=<?php echo $produto->Id_produto; ?>" class="w-100 btn btn-info my-1">Alterar</a>
+                            <a href="?link=produtos&metodo=alterarProduto&Id=<?php echo $produto->Id_produto; ?>" class="w-100 btn btn-info my-1"><i class="far fa-edit"></i> Alterar</a>
                         </td>
                     </tr>
 
@@ -94,7 +94,7 @@ $mensagem = $_REQUEST['mensagem'];
         </table>
 
     </div>
-    <a href="?link=produtos&metodo=criarProduto" class="mb-5 py-3 btn btn-primary btn-block">Novo produto</a>
+    <a href="?link=produtos&metodo=criarProduto" class="mb-5 py-3 btn btn-primary btn-block"><i class="fas fa-plus"></i> Novo produto</a>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -112,7 +112,7 @@ $mensagem = $_REQUEST['mensagem'];
                 Tem certeza que deseja excluir?
             </div>
             <div class="modal-footer">
-                <a href="#" class="delete-button btn btn-block btn-danger">Excluir</a>
+                <a href="#" class="delete-button btn btn-block btn-danger"><i class="far fa-trash-alt"></i> Excluir</a>
             </div>
         </div>
     </div>

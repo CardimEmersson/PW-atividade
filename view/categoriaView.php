@@ -6,7 +6,7 @@ $mensagem = $_REQUEST['mensagem'];
 <div class="d-flex align-items-center flex-column">
     <div class="w-100 my-3 px-5 border-dark border-bottom d-flex justify-content-between align-items-center">
         <h3 class="">Lista de Categorias</h3>
-        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg">Voltar</a>
+        <a href="?link=home" class="my-2 px-3 btn btn-primary btn-lg"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
     </div>
     <?php if (!empty($mensagem)) { ?>
         <div class="alert alert-info" role="alert">
@@ -29,15 +29,15 @@ $mensagem = $_REQUEST['mensagem'];
                         <td class="text-center align-middle"><?php echo $categoria->Id_categoria; ?></td>
                         <td class="text-center align-middle"><?php echo $categoria->Nome_categoria; ?></td>
                         <td class="d-flex justify-content-between">
-                            <a 
-                                data-nome="<?php echo $categoria->Nome_categoria; ?>" 
-                                data-id="<?php echo $categoria->Id_categoria; ?>" 
+                            <a
+                                data-nome="<?php echo $categoria->Nome_categoria; ?>"
+                                data-id="<?php echo $categoria->Id_categoria; ?>"
                                 class="delete w-100 btn btn-danger my-1"
                             >
-                                Apagar
+                              <i class="far fa-trash-alt"></i> Apagar
                             </a>
 
-                            <a href="?link=categorias&metodo=alterarCategoria&Id=<?php echo $categoria->Id_categoria; ?>" class="w-50 btn btn-info my-1 mx-1">Alterar</a>
+                            <a href="?link=categorias&metodo=alterarCategoria&Id=<?php echo $categoria->Id_categoria; ?>" class="w-50 btn btn-info my-1 mx-1"><i class="far fa-edit"></i> Alterar</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -45,7 +45,7 @@ $mensagem = $_REQUEST['mensagem'];
         </table>
 
     </div>
-    <a href="?link=categorias&metodo=criarCategoria" class="w-50 mb-5 py-3 btn btn-primary btn-lg">Nova categoria</a>
+    <a href="?link=categorias&metodo=criarCategoria" class="w-50 mb-5 py-3 btn btn-primary btn-lg"><i class="fas fa-plus"></i> Nova categoria</a>
 </div>
 
 <!-- Modal -->
@@ -64,7 +64,7 @@ $mensagem = $_REQUEST['mensagem'];
                 Tem certeza que deseja excluir?
             </div>
             <div class="modal-footer">
-                <a href="#" class="delete-button btn btn-block btn-danger">Excluir</a>
+                <a href="#" class="delete-button btn btn-block btn-danger"><i class="far fa-trash-alt"></i> Excluir</a>
             </div>
         </div>
     </div>

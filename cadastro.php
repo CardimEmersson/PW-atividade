@@ -24,7 +24,7 @@ $mensagem = $_REQUEST['mensagem'];
     <div class="container mt-5 d-flex flex-column">
 
         <div class="col-12 text-right">
-            <a href="login.php" class="btn btn-lg btn-primary">Voltar</a>
+            <a href="login.php" class="btn btn-lg btn-primary"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
         </div>
 
         <?php if (!empty($mensagem)) { ?>
@@ -99,7 +99,7 @@ $mensagem = $_REQUEST['mensagem'];
 
                     </div>
 
-                    <button type="submit" class="btn btn-block btn-primary" onclick="validarSenha()">Enviar Cadastro</button>
+                    <button type="submit" class="btn btn-block btn-primary" onclick="validarSenha()"><i class="fas fa-file-import"></i> Enviar Cadastro</button>
 
                 </form>
 

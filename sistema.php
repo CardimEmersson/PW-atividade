@@ -23,34 +23,55 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+        <script src="https://kit.fontawesome.com/38428a9f9c.js" crossorigin="anonymous"></script>
 
     <title>SISTEMA-USUARIO</title>
   </head>
   <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <?php if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) {?>
+      <div class="container">
+
+
+
+      <a class="navbar-brand h1 mb-0" href="sistema.php">Sistema de Produtos</a>
+      <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbar-Site">
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end container" id="navbarSite">
+
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+          <a class="nav-link" href="?link=usuario&metodo=exibirPerfil"><i class="fas fa-user-circle"></i> <?php echo $_SESSION['Nome'] ?></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="src/sair.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </ul>
+
+
+      </div>
+</nav>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
 
-                <?php if (isset($_SESSION['Id']) && isset($_SESSION['Nome'])) {?>
-                        <div class="col-12 text-right">
-                            <a href="?link=usuario&metodo=exibirPerfil">
-                                <h6 class="mt-2"><?php echo $_SESSION['Nome'] ?></h6>
-                            </a>
-                            <a href="src/sair.php" class="btn btn-lg btn-danger mb-2">Sair</a>
-                        </div>
+
                 <?php } ?>
 
 
                 <?php if(isset($_GET['mensagem'])){ ?>
                     <div class="col-12 text-center alert alert-info" role="alert">
                         <?php echo $_GET['mensagem']; ?>
-                    </div> 
+                    </div>
                 <?php } ?>
 
 
-                <header class="text-center bg-dark mt-3 pt-3 pb-3">
-                    <h1 class="text-white">Sistema</h1>
-                </header>
+
 
                 <?php
                     if (isset($_REQUEST["link"])){
@@ -74,11 +95,11 @@
                         $controller->home();
                     }
                 ?>
-                
+
             </div>
         </div>
-        
-    </div>    
+
+    </div>
     <!-- Plugin para fazer máscaras em campos de formulário -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>
     <!-- Mascara de input -->

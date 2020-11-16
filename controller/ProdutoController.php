@@ -278,8 +278,9 @@ class ProdutoController
     {
         if (isset($_POST['pesq_nome'])) {
             $nome = $_POST['pesq_nome'];
-            $preco = $_POST['pesq_preco'];
             $quantidade = $_POST['pesq_quantidade'];
+
+            $preco = $this->validaPreco($_POST['pesq_preco']);
 
             ////////
             if (!empty($nome) && empty($preco) && empty($quantidade)) {
